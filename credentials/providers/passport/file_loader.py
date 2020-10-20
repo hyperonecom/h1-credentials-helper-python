@@ -13,13 +13,13 @@ def validate_passport(passport):
     errors = []
     keys = passport.keys()
 
-    if not 'issuer' in keys:
+    if 'issuer' not in keys:
         errors.append("Issuer can't be empty")
-    if not 'certificate_id' in keys:
+    if 'certificate_id' not in keys:
         errors.append("Certificate_id can't be empty")
-    if not 'private_key' in keys:
+    if 'private_key' not in keys:
         errors.append("Private_key can't be empty")
-    if not 'subject_id' in keys:
+    if 'subject_id' not in keys:
         errors.append("Subject_id can't be empty")
 
     if len(errors) == 1:
