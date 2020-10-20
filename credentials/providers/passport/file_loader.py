@@ -1,7 +1,12 @@
 import json
+from pathlib import Path
+from os import path
 
 
 def load_passport_file(location):
+    if not location:
+        location = get_default_passport_location()
+
     with open(location, "r") as f:
         body = f.read()
         parsed_body = json.loads(body)
@@ -27,3 +32,8 @@ def validate_passport(passport):
     elif len(errors) > 1:
         raise "Multiple errors when validating passport file: {}".format(
             "\n".join(errors))
+
+
+def get_default_passport_location():
+    home = str(Path.home())
+    return path.join(home, '.h1', 'passport.json')
