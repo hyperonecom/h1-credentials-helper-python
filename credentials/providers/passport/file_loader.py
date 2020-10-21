@@ -3,9 +3,10 @@ from pathlib import Path
 from os import path
 from .exceptions import InvalidPassportException
 
+
 def get_default_passport_location():
-    home = str(Path.home())
-    return path.join(home, '.h1', 'passport.json')
+    return path.join(Path.home(), '.h1', 'passport.json')
+
 
 def load_passport_file(location=get_default_passport_location()):
     with open(location, "r") as f:
@@ -24,4 +25,3 @@ def validate_passport(passport):
         raise InvalidPassportException("Private_key can't be empty")
     if 'subject_id' not in passport:
         raise InvalidPassportException("Subject_id can't be empty")
-
