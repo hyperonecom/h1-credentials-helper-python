@@ -1,4 +1,4 @@
-from ...auth.jwt.rsa_signer import RSASigner
+from credentials.auth.jwt.rsa_signer import RSASigner
 from .file_loader import load_passport_file
 
 
