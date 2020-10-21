@@ -10,4 +10,4 @@ class RSASigner:
         self.algorithm = algorithm
 
     def get_token(self, audience):
-        return jwt.encode({}, self.private_key, self.algorithm)
+        return jwt.encode({}, self.private_key, algorithm=self.algorithm)

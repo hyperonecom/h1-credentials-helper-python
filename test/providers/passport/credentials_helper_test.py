@@ -13,7 +13,6 @@ class TestGettingCredentialsHelper(unittest.TestCase):
 
         token = helper.get_token('test audience')
 
-        # generates all segments RSA signed JWT
         number_of_segments = len(token.split('.'))
 
         self.assertEqual(number_of_segments, 3)
