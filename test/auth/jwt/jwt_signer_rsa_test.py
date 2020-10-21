@@ -52,6 +52,9 @@ def decode_jwt_segment(segment):
 
 
 def decode_base64(b64_string):
+    missing_padding = len(b64_string) % 4
+    if missing_padding:
+        b64_string += '=' * (4 - missing_padding)
     encoded_bytes = b64_string.encode('ascii')
     decoded_bytes = b64decode(encoded_bytes)
     return decoded_bytes.decode('ascii')
