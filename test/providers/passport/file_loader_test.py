@@ -31,6 +31,7 @@ class TestLoadingCredentialsFile(unittest.TestCase):
 
         # too long for assert equal testing
         self.assertNotEqual(loaded_passport["private_key"], "")
+        self.assertIsInstance(loaded_passport["private_key"], str)
 
 
 class TestPassportValidation(unittest.TestCase):
