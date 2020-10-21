@@ -40,9 +40,8 @@ class TestJwtRsaSigner(unittest.TestCase):
         self.assertEqual(payload['aud'], 'audience')
         self.assertEqual(payload['iss'], 'issuer')
         self.assertEqual(payload['sub'], 'subject_id')
-        current_unix_timestamp = int(time())
-        self.assertGreaterEqual(payload['iat'], current_unix_timestamp)
-        self.assertGreaterEqual(payload['exp'], current_unix_timestamp)
+        self.assertIsInstance(payload['iat'], int)
+        self.assertIsInstance(payload['exp'], int)
         self.assertGreaterEqual(payload['exp'], payload['iat'])
 
 
