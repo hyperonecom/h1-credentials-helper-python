@@ -1,4 +1,4 @@
-from credentials.providers.passport.file_loader import load_passport_file, get_default_passport_location
+from credentials.providers.passport.file_loader import load_passport_file, get_default_passport_location, validate_passport
 from credentials.providers.passport.exceptions import InvalidPassportException
 import unittest
 from unittest.mock import patch
@@ -34,7 +34,23 @@ class TestLoadingCredentialsFile(unittest.TestCase):
 
 
 class TestPassportValidation(unittest.TestCase):
-    pass
+    def test_invalid_passport_validation(self):
+        invalid_passport_mock = {
+            "subject_id": "/iam/project/projectID/sa/SA", "certificate_id": "certID", "issuer": "https://somestrangeissuer.tld"
+        }
+
+        with self.assertRaises(InvalidPassportException):
+            validate_passport(invalid_passport_mock)
+
+    def test_valid_passport_validation(self):
+        try:
+            valid_passport_mock = {
+                "subject_id": "/iam/project/projectID/sa/SA", "certificate_id": "certID",
+                "issuer": "https://somestrangeissuer.tld", "private_key": "privatekey"
+            }
+            validate_passport(valid_passport_mock)
+        except InvalidPassportException:
+            self.fail("Validation failed on valid passport mock")
 
 
 class TestGettingDefaultPassportLocation(unittest.TestCase):
