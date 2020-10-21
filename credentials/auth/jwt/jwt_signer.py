@@ -1,3 +1,4 @@
+from time import time
 import jwt
 
 
@@ -10,5 +11,16 @@ class JWTSigner:
         self.algorithm = algorithm
 
     def get_token(self, audience):
-        token = jwt.encode({}, self.private_key, algorithm=self.algorithm)
+        current_unix_timestamp = int(time())
+        five_minutes = 5 * 60
+        payload = {
+            "aud": audience,
+            "iat": current_unix_timestamp,
+            "exp": current_unix_timestamp + five_minutes,
+            "sub": self.subject_id
+        }
+        headers = {'kid': self.key_id}
+
+        token = jwt.encode(payload, self.private_key,
+                           algorithm=self.algorithm, headers=headers)
         return token.decode('utf-8')
