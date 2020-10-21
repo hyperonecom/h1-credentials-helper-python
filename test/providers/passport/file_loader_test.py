@@ -1,16 +1,19 @@
 from credentials.providers.passport.file_loader import load_passport_file
 from credentials.providers.passport.exceptions import InvalidPassportException
 import unittest
+import pathlib
+from os import path
 
 
 class TestLoadingCredentialsFile(unittest.TestCase):
 
     def test_loading_invalid_file(self):
         with self.assertRaises(InvalidPassportException):
-            load_passport_file('./fixtures/invalidPassport.json')
+            load_passport_file(get_fixture_location('invalidPassport.json'))
 
     def test_loading_valid_file(self):
-        loaded_passport = load_passport_file('./fixtures/validPassport.json')
+        loaded_passport = load_passport_file(
+            get_fixture_location('validPassport.json'))
 
         self.assertEqual(
             loaded_passport["subject_id"], "/iam/project/projectId/sa/serviceAccountId")
@@ -25,6 +28,11 @@ class TestLoadingCredentialsFile(unittest.TestCase):
 
         # too long for assert equal testing
         self.assertNotEqual(loaded_passport["private_key"], "")
+
+
+def get_fixture_location(name):
+    parent = pathlib.Path(__file__).parent.absolute()
+    return path.join(parent, 'fixtures', name)
 
 
 if __name__ == '__main__':
