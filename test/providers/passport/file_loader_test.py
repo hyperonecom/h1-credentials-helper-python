@@ -3,6 +3,7 @@ from credentials.providers.passport.exceptions import InvalidPassportException
 import unittest
 import pathlib
 from os import path
+from .fixture_helper import get_fixture_location
 
 
 class TestLoadingCredentialsFile(unittest.TestCase):
@@ -28,11 +29,6 @@ class TestLoadingCredentialsFile(unittest.TestCase):
 
         # too long for assert equal testing
         self.assertNotEqual(loaded_passport["private_key"], "")
-
-
-def get_fixture_location(name):
-    parent = pathlib.Path(__file__).parent.absolute()
-    return path.join(parent, 'fixtures', name)
 
 
 if __name__ == '__main__':
