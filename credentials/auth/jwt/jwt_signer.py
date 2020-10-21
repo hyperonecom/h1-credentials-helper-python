@@ -15,6 +15,7 @@ class JWTSigner:
         five_minutes = 5 * 60
         payload = {
             "aud": audience,
+            "iss": self.issuer,
             "iat": current_unix_timestamp,
             "exp": current_unix_timestamp + five_minutes,
             "sub": self.subject_id
