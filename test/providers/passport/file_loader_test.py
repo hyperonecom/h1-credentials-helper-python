@@ -9,6 +9,23 @@ class TestLoadingCredentialsFile(unittest.TestCase):
         with self.assertRaises(InvalidPassportException):
             load_passport_file('./fixtures/invalidPassport.json')
 
+    def test_loading_valid_file(self):
+        loaded_passport = load_passport_file('./fixtures/validPassport.json')
+
+        self.assertEqual(
+            loaded_passport["subject_id"], "/iam/project/projectId/sa/serviceAccountId")
+
+        self.assertEqual(
+            loaded_passport["certificate_id"], "certificateID"
+        )
+
+        self.assertEqual(
+            loaded_passport["issuer"], "https://api.hyperone.com/v2/iam/project/projectId/sa/serviceAccountId"
+        )
+
+        # too long for assert equal testing
+        self.assertNotEqual(loaded_passport["private_key"], "")
+
 
 if __name__ == '__main__':
     unittest.main()
