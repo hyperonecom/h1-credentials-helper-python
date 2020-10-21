@@ -2,7 +2,7 @@ import unittest
 import json
 from time import time
 from base64 import b64decode
-from credentials.auth.jwt.rsa_signer import RSASigner
+from credentials.auth.jwt.jwt_signer import JWTSigner
 
 PRIVATE_KEY = '''-----BEGIN RSA PRIVATE KEY-----
 MIICWgIBAAKBgGFfgMY+DuO8l0RYrMLhcl6U/NigNIiOVhoo/xnYyoQALpWxBaBR
@@ -24,7 +24,7 @@ HIIm179mUYCgO6iAHmkqxlFHFwprUBKdPrmP8qF9
 class TestJwtRsaSigner(unittest.TestCase):
 
     def test_getting_token(self):
-        signer = RSASigner(PRIVATE_KEY, 'key_id',
+        signer = JWTSigner(PRIVATE_KEY, 'key_id',
                            'issuer', 'subject_id', 'RS256')
 
         token = signer.get_token('audience')

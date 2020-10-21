@@ -1,7 +1,7 @@
 import jwt
 
 
-class RSASigner:
+class JWTSigner:
     def __init__(self, private_key, key_id, issuer, subject_id, algorithm):
         self.private_key = private_key
         self.key_id = key_id
