@@ -5,7 +5,7 @@ from unittest.mock import patch
 import pathlib
 from os import path
 from .fixture_helper import get_fixture_location
-from pathlib import WindowsPath, Path
+from pathlib import Path
 
 
 class TestLoadingCredentialsFile(unittest.TestCase):
@@ -58,7 +58,7 @@ class TestGettingDefaultPassportLocation(unittest.TestCase):
 
     def test_getting_passport_location(self):
         with patch.object(Path, 'home') as mock:
-            path_object_mock = WindowsPath("C:/Users/Jakup")
+            path_object_mock = Path("C:/Users/Jakup")
             mock.return_value = path_object_mock
 
             passport_path = get_default_passport_location()
