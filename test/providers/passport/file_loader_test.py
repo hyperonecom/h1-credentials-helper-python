@@ -58,12 +58,12 @@ class TestGettingDefaultPassportLocation(unittest.TestCase):
 
     def test_getting_passport_location(self):
         with patch.object(Path, 'home') as mock:
-            path_object_mock = Path("C:/Users/Jakup")
+            path_object_mock = Path("/home/Jakup")
             mock.return_value = path_object_mock
 
             passport_path = get_default_passport_location()
             self.assertEqual(
-                passport_path, "C:\\Users\\Jakup\\.h1\\passport.json")
+                passport_path, "/home/Jakup/.h1/passport.json")
 
 
 if __name__ == '__main__':
