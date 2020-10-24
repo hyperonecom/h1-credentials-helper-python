@@ -1,4 +1,4 @@
-from credentials.providers.passport.credentials_helper import get_credentials_helper
+from credentials.providers.passport.credentials_helper import get_passport_credentials_helper
 import unittest
 import pathlib
 from os import path
@@ -8,7 +8,7 @@ from .fixture_helper import get_fixture_location
 class TestGettingCredentialsHelper(unittest.TestCase):
 
     def test_getting_credentials_helper(self):
-        helper = get_credentials_helper(
+        helper = get_passport_credentials_helper(
             get_fixture_location('validPassport.json'))
 
         token = helper.get_token('test audience')
