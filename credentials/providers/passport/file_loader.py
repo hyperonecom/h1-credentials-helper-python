@@ -8,7 +8,7 @@ def get_default_passport_location():
     return path.join(Path.home(), '.h1', 'passport.json')
 
 
-def load_passport_file(location=get_default_passport_location()):
+def load_passport_file(location):
     with open(location, "r") as f:
         parsed_body = json.load(f)
         validate_passport(parsed_body)
