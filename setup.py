@@ -3,7 +3,7 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-REQUIRES = ["PyJWT>=1.7.1", "cryptography >= 3.1.1"]
+REQUIRES = ["PyJWT>=2.0.1", "cryptography >= 3.1.1"]
 
 setuptools.setup(
     name="credentials-hyperonecom",

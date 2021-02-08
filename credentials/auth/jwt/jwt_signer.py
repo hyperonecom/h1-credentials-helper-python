@@ -24,4 +24,6 @@ class JWTSigner:
 
         token = jwt.encode(payload, self.private_key,
                            algorithm=self.algorithm, headers=headers)
-        return token.decode('utf-8')
+        if isinstance(token, (bytes, bytearray)): # pyjwt <2.0.0 return bytes
+            return token.decode('utf-8')
+        return token
